@@ -86,8 +86,41 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mb-3">
+                                        <label class="form-label" for="nom du client">Nom du client</label>
+                                        <input class="form-control"  type="text" id="client" name="client" placeholder="">
+                                    </div>
+                                </div>
+                            
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Présentation du client(Français) </label>
+                                        <textarea  class="form-control" name="presentation_client_fr" placeholder="" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Présentation du client(Anglais) </label>
+                                        <textarea name="presentation_client_en" class="form-control" placeholder="" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label">Présentation du client(Allemand) </label>
+                                        <textarea name="presentation_client_de" class="form-control" placeholder="" cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
                                         <label class="form-label" for="lien">Lien vers la réalisation </label>
                                         <input class="form-control"  type="text" id="lien" name="lien" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="date_realisation">Date de réalisation </label>
+                                        <input class="form-control"  type="text" id="date_realisation" name="date_realisation" placeholder="">
                                     </div>
                                 </div>
                             </div>

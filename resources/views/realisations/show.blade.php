@@ -84,12 +84,45 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="lien">Lien vers la réalisation </label>
-                                        <input class="form-control"  type="text" value="{{$realisation->lien}}" id="lien" name="lien" placeholder="">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="nom du client">Nom du client</label>
+                                            <input class="form-control"  type="text" id="client" name="client" value=" {{$realisation->client}} " placeholder="">
+                                        </div>
                                     </div>
-                                </div>
+                                
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Présentation du client(Français)  </label>
+                                            <textarea  class="form-control" name="presentation_client_fr" placeholder="" rows="10"> {{$realisation->presentation_client_fr}} </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Présentation du client(Anglais)  </label>
+                                            <textarea name="presentation_client_en" class="form-control" placeholder="" rows="10"> {{$realisation->presentation_client_en}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Présentation du client(Allemand)  </label>
+                                            <textarea name="presentation_client_de" class="form-control" placeholder="" cols="30" rows="10"> {{$realisation->presentation_client_de}}</textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="lien">Lien vers la réalisation </label>
+                                            <input class="form-control"  type="text" id="lien" name="lien" value=" {{$realisation->lien}} " placeholder="">
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="date_realisation">Date de réalisation </label>
+                                            <input class="form-control"  type="text" id="date_realisation" name="date_realisation" value=" {{$realisation->date_realisation}} " placeholder="">
+                                        </div>
+                                    </div>
                             </div>
                             
                             <button type="submit" class="btn btn-info waves-effect waves-light">Enregistrer</button>

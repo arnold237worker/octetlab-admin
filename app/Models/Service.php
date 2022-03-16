@@ -15,11 +15,16 @@ class Service extends Model
      * @var array
      */
     protected $fillable = [
-        'nom_fr', 'nom_de', 'nom_en','contenu_fr', 'contenu_de', 'contenu_en', 'image', 'slug'
+        'nom_fr', 'nom_de', 'nom_en','contenu_fr', 'contenu_de', 'contenu_en', 'image', 'slug', 'categorie_service_id'
     ];
 
     public function realisations()
     {
         return $this->hasMany(Realisation::class);
+    }
+
+    public function categorie()
+    {
+        return $this->belongsTo(CategorieService::class, 'categorie_service_id');
     }
 }

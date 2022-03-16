@@ -114,6 +114,13 @@
                             </li>
 
                             <li>
+                                <a href=" {{route('categorieservices')}} " class=" waves-effect">
+                                    <i class="mdi mdi-label-outline"></i>
+                                    <span>Categorie Services</span>
+                                </a>
+                            </li>
+
+                            <li>
                                 <a href=" {{route('services')}} " class=" waves-effect">
                                     <i class="mdi mdi-briefcase"></i>
                                     <span>Services</span>
@@ -150,7 +157,7 @@
 
                             <li>
                                 <a href=" {{route('process')}} " class=" waves-effect">
-                                    <i class="mdi mdi-package"></i>
+                                    <i class="mdi mdi-order-bool-ascending-variant"></i>
                                     <span>Process</span>
                                 </a>
                             </li>

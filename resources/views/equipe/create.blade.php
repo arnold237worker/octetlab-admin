@@ -63,7 +63,7 @@
                                         <input class="form-control" required type="text" id="posteDe" name="poste_de">
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
+                                {{-- <div class="col-lg-12">
                                     <div class="mb-1">
                                         <label class="form-label" for="facebook">Lien facebook </label>
                                         <input class="form-control" type="text" id="facebook" name="facebook" placeholder="">
@@ -80,11 +80,11 @@
                                         <label class="form-label" for="linkedin">Lien linkedin </label>
                                         <input class="form-control" type="text" id="linkedin" name="linkedin" placeholder="">
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <br>
                             <div class="mb-3">
-                                <label class="form-label" for="default-input">Image </label>
+                                <label class="form-label" for="default-input">Image (360x420 pixels) </label>
                                 <input type="file" name="image" class="dropify" >
                             </div>
                             

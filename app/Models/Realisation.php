@@ -10,7 +10,20 @@ class Realisation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nom_fr', 'nom_de', 'nom_en','contenu_fr', 'contenu_de', 'contenu_en', 'lien', 'slug', 'service_id'
+        'nom_fr', 
+        'nom_de', 
+        'nom_en', 
+        'contenu_fr', 
+        'contenu_de', 
+        'contenu_en', 
+        'presentation_client_fr', 
+        'presentation_client_de', 
+        'presentation_client_en', 
+        'client',
+        'date_realisation',
+        'lien', 
+        'slug', 
+        'service_id'
     ];
 
     public function images()

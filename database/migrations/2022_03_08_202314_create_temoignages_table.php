@@ -16,9 +16,9 @@ class CreateTemoignagesTable extends Migration
         Schema::create('temoignages', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('contenu_fr');
-            $table->string('contenu_en');
-            $table->string('contenu_de');
+            $table->text('contenu_fr');
+            $table->text('contenu_en');
+            $table->text('contenu_de');
             $table->string('image')->nullable();
             $table->timestamps();
         });

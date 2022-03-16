@@ -18,9 +18,9 @@ class CreateServicesTable extends Migration
             $table->string('nom_fr');
             $table->string('nom_en');
             $table->string('nom_de');
-            $table->string('contenu_fr');
-            $table->string('contenu_de');
-            $table->string('contenu_en');
+            $table->text('contenu_fr');
+            $table->text('contenu_de');
+            $table->text('contenu_en');
             $table->string('slug');
             $table->string('image')->nullable();
             $table->timestamps();

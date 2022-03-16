@@ -52,6 +52,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="categorie">Catégorie <span class="text-info">*</span> </label>
+                                        <select name="categorie_service_id" id="categorie" class="form-control" required>
+                                            @foreach ($categories as $item)
+                                                <option value=" {{$item->id}} " @if ($item->id == $service->categorie_service_id) selected="selected" @endif > {{$item->nom_fr}} </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row g-2 g-md-4">
                                 <div class="col-lg-4">

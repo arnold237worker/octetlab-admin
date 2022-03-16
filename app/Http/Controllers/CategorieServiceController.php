@@ -3,24 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Exception;
-use App\Models\Service;
 use App\Models\CategorieService;
-use Helper;
+use Exception;
+use Illuminate\Support\Str;
 
-class ServiceController extends Controller
+class CategorieServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::with('categorie')->get();
-        return view('services.index', compact('services'));
+        $categorieservices = CategorieService::all();
+        return view('categorieservices.index', compact('categorieservices'));
     }
 
     public function create()
     {
-        $categories = CategorieService::all();
-        return view('services.create', compact('categories'));
+        return view('categorieservices.create');
     }
 
     public function store(Request $request)
@@ -32,7 +29,6 @@ class ServiceController extends Controller
             'contenu_fr' => 'required',
             'contenu_de' => 'required',
             'contenu_en' => 'required',
-            'categorie_service_id' => 'required'
         ], [
             'required' => ':attribute est requis',
         ]);
@@ -49,8 +45,8 @@ class ServiceController extends Controller
         $input['slug'] = Str::slug($input['nom_fr'], '-');
         
         try{
-            Service::create($input);
-            return redirect('services')->withSuccess('Service enregistré avec succès !');
+            CategorieService::create($input);
+            return redirect('categorieservices')->withSuccess('Catégorie enregistrée avec succès !');
         }catch(Exception $e){
             return back()->withErrors(['message' => $e->getMessage()]);
         }
@@ -58,10 +54,8 @@ class ServiceController extends Controller
 
     public function edit($slug)
     {
-        
-        $categories = CategorieService::all();
-        $service = Service::where('slug', $slug)->first();
-        return view('services.show', compact('service', 'categories'));
+        $categorieservice = CategorieService::where('slug', $slug)->first();
+        return view('categorieservices.show', compact('categorieservice'));
     }
 
     public function update(Request $request, $id)
@@ -73,7 +67,6 @@ class ServiceController extends Controller
             'contenu_fr' => 'required',
             'contenu_de' => 'required',
             'contenu_en' => 'required',
-            'categorie_service_id' => 'required'
         ], [
             'required' => ':attribute est requis',
         ]);
@@ -90,12 +83,12 @@ class ServiceController extends Controller
         $input['slug'] = Str::slug($input['nom_fr'], '-');
         
         try{
-            $service = Service::find($id);
-            if($service){
-                $service->update($input);
-                return redirect('services')->withSuccess('Service modifié avec succès !');
+            $categorieservice = CategorieService::find($id);
+            if($categorieservice){
+                $categorieservice->update($input);
+                return redirect('categorieservices')->withSuccess('Catégorie modifiée avec succès !');
             }else{
-                return back()->withErrors(['message' => 'Service introuvable !']);
+                return back()->withErrors(['message' => 'Catégorie introuvable !']);
             }
         }catch(Exception $e){
             return back()->withErrors(['message' => $e->getMessage()]);
@@ -105,12 +98,12 @@ class ServiceController extends Controller
     public function delete($id)
     {
         try{
-            $service = Service::find($id);
-            if($service){
-                $service->delete();
-                return redirect()->route('services')->withSuccess('Service supprimé avec succès !');
+            $categorie = CategorieService::find($id);
+            if($categorie){
+                $categorie->delete();
+                return redirect()->route('categorieservices')->withSuccess('Catégorie supprimée avec succès !');
             }else{
-                return back()->withErrors(['message' => 'Service introuvable !']);
+                return back()->withErrors(['message' => 'Catégorie introuvable !']);
             }
         }catch(Exception $e){
             return back()->withErrors(['message' => $e->getMessage()]);

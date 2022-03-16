@@ -18,6 +18,15 @@ Route::post('/do-login', 'UserController@doLogin')->name('dologin');
 
 Route::group(['middleware' => 'user.auth'], function(){
     Route::get('/tableau-de-bord', 'HomeController@dashboard')->name('dashboard');
+
+    //Route to manage categories services
+    Route::get('/categorieservices', 'CategorieServiceController@index')->name('categorieservices');
+    Route::get('categorieservice', 'CategorieServiceController@create')->name('categorieservices.create');
+    Route::post('categorieservice', 'CategorieServiceController@store')->name('categorieservices.store');
+    Route::get('categorieservice/{slug}', 'CategorieServiceController@edit')->name('categorieservices.edit');
+    Route::post('categorieservice/{id}', 'CategorieServiceController@update')->name('categorieservices.update');
+    Route::get('categorieservice/{id}/delete', 'CategorieServiceController@delete')->name('categorieservices.delete');
+    
     //Route to manage services
     Route::get('/services', 'ServiceController@index')->name('services');
     Route::get('/service', 'ServiceController@create')->name('services.create');

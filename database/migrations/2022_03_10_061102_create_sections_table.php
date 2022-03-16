@@ -20,9 +20,9 @@ class CreateSectionsTable extends Migration
             $table->string('titre_fr');
             $table->string('titre_en');
             $table->string('titre_de');
-            $table->string('contenu_fr');
-            $table->string('contenu_de');
-            $table->string('contenu_en');
+            $table->text('contenu_fr');
+            $table->text('contenu_de');
+            $table->text('contenu_en');
             $table->timestamps();
         });
     }

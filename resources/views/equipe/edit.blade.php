@@ -63,7 +63,7 @@
                                         <input class="form-control" required type="text" id="posteDe" name="poste_de" value=" {{$equipe->poste_de}} ">
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
+                                {{-- <div class="col-lg-12">
                                     <div class="mb-1">
                                         <label class="form-label" for="facebook">Lien facebook </label>
                                         <input class="form-control" type="text" id="facebook" name="facebook" value=" {{$equipe->facebook}} " placeholder="">
@@ -81,13 +81,13 @@
                                         <input class="form-control" type="text" id="linkedin" name="linkedin" value=" {{$equipe->linkedin}} " placeholder="">
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <br>
                             <div class="mb-3">
                                 <label class="form-label" for="default-input">Image </label>
                                 <input type="file" name="image" id="image" >
                             </div>
-                            
+                        </div>
                             <button type="submit" class="btn btn-info waves-effect waves-light">Enregistrer</button>
                         </form>
                     </div>
