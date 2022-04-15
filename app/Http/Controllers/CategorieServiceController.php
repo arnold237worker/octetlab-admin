@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\CategorieService;
 use Exception;
 use Illuminate\Support\Str;
+use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
 
 class CategorieServiceController extends Controller
 {
@@ -46,6 +48,11 @@ class CategorieServiceController extends Controller
         
         try{
             CategorieService::create($input);
+            Log::create(array(
+                'user_id' => Auth::user()->id,
+                'item' => 'Catégorie de service',
+                'action' => 'Enregistrement de la catégorie de service '.$input['nom_fr']
+            ));
             return redirect('categorieservices')->withSuccess('Catégorie enregistrée avec succès !');
         }catch(Exception $e){
             return back()->withErrors(['message' => $e->getMessage()]);
@@ -86,6 +93,11 @@ class CategorieServiceController extends Controller
             $categorieservice = CategorieService::find($id);
             if($categorieservice){
                 $categorieservice->update($input);
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Catégorie de service',
+                    'action' => 'Mise à jour de la catégorie de service '.$input['nom_fr']
+                ));
                 return redirect('categorieservices')->withSuccess('Catégorie modifiée avec succès !');
             }else{
                 return back()->withErrors(['message' => 'Catégorie introuvable !']);
@@ -101,6 +113,11 @@ class CategorieServiceController extends Controller
             $categorie = CategorieService::find($id);
             if($categorie){
                 $categorie->delete();
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Catégorie de service',
+                    'action' => 'Suppression catégorie de service '.$categorie->nom_fr
+                ));
                 return redirect()->route('categorieservices')->withSuccess('Catégorie supprimée avec succès !');
             }else{
                 return back()->withErrors(['message' => 'Catégorie introuvable !']);

@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use Exception;
 use App\Models\Service;
 use App\Models\CategorieService;
+use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
 use Helper;
 
 class ServiceController extends Controller
@@ -50,6 +52,12 @@ class ServiceController extends Controller
         
         try{
             Service::create($input);
+            
+            Log::create(array(
+                'user_id' => Auth::user()->id,
+                'item' => 'Service',
+                'action' => 'Enregistrement du service '.$input['nom_fr']
+            ));
             return redirect('services')->withSuccess('Service enregistré avec succès !');
         }catch(Exception $e){
             return back()->withErrors(['message' => $e->getMessage()]);
@@ -93,6 +101,11 @@ class ServiceController extends Controller
             $service = Service::find($id);
             if($service){
                 $service->update($input);
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Service',
+                    'action' => 'Mise à jour des informations du service '.$input['nom_fr']
+                ));
                 return redirect('services')->withSuccess('Service modifié avec succès !');
             }else{
                 return back()->withErrors(['message' => 'Service introuvable !']);
@@ -108,6 +121,11 @@ class ServiceController extends Controller
             $service = Service::find($id);
             if($service){
                 $service->delete();
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Service',
+                    'action' => 'Suppression du service '.$service->nom_fr
+                ));
                 return redirect()->route('services')->withSuccess('Service supprimé avec succès !');
             }else{
                 return back()->withErrors(['message' => 'Service introuvable !']);

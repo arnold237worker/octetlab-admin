@@ -15,7 +15,7 @@ class CategorieService extends Model
      * @var array
      */
     protected $fillable = [
-        'nom_fr', 'nom_de', 'nom_en','contenu_fr', 'contenu_de', 'contenu_en', 'image', 'slug'
+        'nom_fr', 'nom_de', 'nom_en','contenu_fr', 'contenu_de', 'contenu_en', 'image', 'slug', 'etat'
     ];
 
     public function services()

@@ -11,7 +11,11 @@
         <meta content="Tableau de bord d'OctetLab" name="description" />
         <meta content="Arnold FOSSO" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href=" {{asset('assets/images/favicon.ico')}} ">
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/favicon/apple-touch-icon.png')}} ">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/favicon/favicon-32x32.png')}} ">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/favicon/favicon-16x16.png')}}">
+        <link rel="manifest" href="{{asset('assets/favicon/site.webmanifest')}}">
 
         <!-- Bootstrap Css -->
         <link href=" {{asset('assets/css/bootstrap.min.css')}} " id="bootstrap-style" rel="stylesheet" type="text/css" />

@@ -84,5 +84,18 @@ Route::group(['middleware' => 'user.auth'], function(){
     Route::get('/section/create', 'SectionController@create')->name('sections.create');
     Route::get('section/{id}/delete', 'SectionController@delete')->name('sections.delete');
     Route::post('/sections/{id}', 'SectionController@update')->name('sections.update');
+
+    Route::get('/users', 'UserController@index')->name('users');
+    Route::get('/user/{id}/show', 'UserController@show')->name('users.show');
+    Route::post('/users', 'UserController@store')->name('users.store');
+    Route::get('/user/create', 'UserController@create')->name('users.create');
+    Route::get('user/{id}/delete', 'UserController@delete')->name('users.delete');
+    Route::post('/users/{id}', 'UserController@update')->name('users.update');
+    Route::get('/users/{id}/edit', 'UserController@edit')->name('users.edit');
+    Route::get('/profil', 'UserController@profil')->name('profil');
+    Route::get('/modifier-mot-de-passe', 'UserController@change_password')->name('modifier-mot-de-passe');
+    Route::post('/update-password', 'UserController@update_password')->name('users.update-password');
+    Route::get('/deconnexion', 'UserController@deconnexion')->name('deconnexion');
+    Route::get('/logs', 'LogController@index')->name('logs');
 });
 

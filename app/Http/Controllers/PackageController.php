@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
 use App\Models\Package;
+use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
 
 class PackageController extends Controller
 {
@@ -31,6 +33,11 @@ class PackageController extends Controller
             $package = Package::find($id);
             if($package){
                 $package->delete();
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Package',
+                    'action' => 'Suppression du package '.$package->nom_fr
+                ));
                 return redirect()->route('packages')->withSuccess('Pack supprimé avec succès !');
             }else{
                 return back()->withErrors(['message' => 'Pack introuvable !']);
@@ -57,6 +64,11 @@ class PackageController extends Controller
         
         try{
             Package::create($input);
+            Log::create(array(
+                'user_id' => Auth::user()->id,
+                'item' => 'Package',
+                'action' => 'Enregistrement du package '.$input['nom_fr']
+            ));
             return redirect('packages')->withSuccess('Pack supprimé avec succès !');
         }catch(Exception $e){
             return back()->withErrors(['message' => $e->getMessage()]);
@@ -82,6 +94,11 @@ class PackageController extends Controller
             $package = Package::find($id);
             if($package){
                 $package->update($input);
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Package',
+                    'action' => 'Mise à jour du package '.$input['nom_fr']
+                ));
                 return redirect('packages')->withSuccess('Pack modifié avec succès !');
             }else{
                 return back()->withErrors(['message' => 'Pack introuvable !']);

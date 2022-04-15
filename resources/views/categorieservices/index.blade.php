@@ -43,6 +43,7 @@
                             <thead>
                             <tr>
                                 <th>Nom de la catégorie</th>
+                                <th>Statut</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -52,6 +53,11 @@
                                 @foreach ($categorieservices as $item)
                                     <tr>
                                         <td> {{$item->nom_fr}} </td>
+                                        <td>@if ($item->etat == "published")
+                                            <span class="alert alert-success">Publier</span>
+                                        @else
+                                        <span class="alert alert-warning">Brouillon</span>
+                                        @endif</td>
                                         <td width="12%">
                                             <a href=" {{route('categorieservices.edit', $item->slug)}} "  class="btn btn-outline-info btn-sm edit" title="Modifier">
                                                 <i class="fas fa-pencil-alt"></i>

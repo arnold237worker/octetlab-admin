@@ -33,6 +33,19 @@
                         <form method="post" action=" {{route('categorieservices.update', $categorieservice->id)}} " enctype="multipart/form-data" >
                             @csrf
                             <div class="row g-2 g-md-4">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="etat">Statut <span class="text-info">*</span> </label>
+                                        <select class="form-select" required name="etat" id="autoSizingSelect">
+                                            <option value="published" @if ($categorieservice->etat == "published")
+                                                selected="selected"
+                                            @endif>Publier</option>
+                                            <option value="draft" @if ($categorieservice->etat == "draft")
+                                                selected="selected"
+                                            @endif>Brouillon</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-lg-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="nomFr">Nom de la catégorie(Français) <span class="text-info">*</span> </label>

@@ -44,6 +44,7 @@
                             <tr>
                                 <th>Nom du service</th>
                                 <th>Catégorie</th>
+                                <th>Statut</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -54,6 +55,13 @@
                                     <tr>
                                         <td> {{$item->nom_fr}} </td>
                                         <td> {{$item->categorie->nom_fr}} </td>
+                                        <td>
+                                            @if ($item->etat == "published")
+                                            <span class="alert alert-success">Publier</span>
+                                        @else
+                                            <span class="alert alert-warning">Brouillon</span>
+                                        @endif
+                                        </td>
                                         <td width="12%">
                                             <a href=" {{route('services.edit', $item->slug)}} "  class="btn btn-outline-info btn-sm edit" title="Modifier">
                                                 <i class="fas fa-pencil-alt"></i>

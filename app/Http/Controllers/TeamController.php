@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Equipe;
 use Illuminate\Support\Str;
 use Exception;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Log;
 
 class TeamController extends Controller
 {
@@ -34,19 +36,24 @@ class TeamController extends Controller
         ]);
 
         $input = $request->all();
-        if($request->hasfile('image')){
+        if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename =time().Str::random(2).'.'.$extension;
+            $filename = time() . Str::random(2) . '.' . $extension;
             $file->move('images/', $filename);
-            $input['image'] = url('/').'/images/'. $filename;
+            $input['image'] = url('/') . '/images/' . $filename;
         }
 
-        
-        try{
+
+        try {
             Equipe::create($input);
+            Log::create(array(
+                'user_id' => Auth::user()->id,
+                'item' => 'Equipe',
+                'action' => 'Enregistrement du membre ' . $input['nom']
+            ));
             return redirect()->route('teams')->withSuccess('Membre enregistré avec succès !');
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return back()->withErrors(['message' => $e->getMessage()]);
         }
     }
@@ -59,15 +66,20 @@ class TeamController extends Controller
 
     public function delete($id)
     {
-        try{
+        try {
             $equipe = Equipe::find($id);
-            if($equipe){
+            if ($equipe) {
                 $equipe->delete();
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Equipe',
+                    'action' => 'Suppression du membre ' . $equipe->nom
+                ));
                 return redirect()->route('teams')->withSuccess('Membre supprimé avec succès !');
-            }else{
+            } else {
                 return back()->withErrors(['message' => 'Membre introuvable !']);
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return back()->withErrors(['message' => $e->getMessage()]);
         }
     }
@@ -86,24 +98,30 @@ class TeamController extends Controller
         ]);
 
         $input = $request->all();
-        if($request->hasfile('image')){
+        if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename =time().Str::random(2).'.'.$extension;
+            $filename = time() . Str::random(2) . '.' . $extension;
             $file->move('images/', $filename);
-            $input['image'] = url('/').'/images/'. $filename;
+            $input['image'] = url('/') . '/images/' . $filename;
         }
 
-        
-        try{
+
+        try {
             $equipe = Equipe::find($id);
-            if($equipe){
+            if ($equipe) {
                 $equipe->update($input);
+
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Equipe',
+                    'action' => 'Mise à jour des informations du membre ' . $input['nom']
+                ));
                 return redirect()->route('teams')->withSuccess('Informations du membre modifiées avec succès !');
-            }else{
+            } else {
                 return back()->withErrors(['message' => 'Membre introuvable']);
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return back()->withErrors(['message' => $e->getMessage()]);
         }
     }

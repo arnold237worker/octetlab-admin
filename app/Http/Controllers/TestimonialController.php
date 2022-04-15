@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Temoignage;
 use Illuminate\Support\Str;
+use App\Models\Log;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class TestimonialController extends Controller
@@ -38,18 +40,24 @@ class TestimonialController extends Controller
         ]);
 
         $input = $request->all();
-        if($request->hasfile('image')){
+        if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename =time().Str::random(2).'.'.$extension;
+            $filename = time() . Str::random(2) . '.' . $extension;
             $file->move('images/', $filename);
-            $input['image'] = url('/').'/images/'. $filename;
+            $input['image'] = url('/') . '/images/' . $filename;
         }
-        
-        try{
+
+        try {
             Temoignage::create($input);
+
+            Log::create(array(
+                'user_id' => Auth::user()->id,
+                'item' => 'Témoignages',
+                'action' => 'Enregistrement du témoignage de ' . $input['nom']
+            ));
             return redirect('temoignages')->withSuccess('Témoignage enregistré avec succès !');
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return back()->withErrors(['message' => $e->getMessage()]);
         }
     }
@@ -66,38 +74,51 @@ class TestimonialController extends Controller
         ]);
 
         $input = $request->all();
-        if($request->hasfile('image')){
+        if ($request->hasfile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename =time().Str::random(2).'.'.$extension;
+            $filename = time() . Str::random(2) . '.' . $extension;
             $file->move('images/', $filename);
-            $input['image'] = url('/').'/images/'. $filename;
+            $input['image'] = url('/') . '/images/' . $filename;
         }
-        
-        try{
+
+        try {
             $temoignage = Temoignage::find($id);
-            if($temoignage){
+            if ($temoignage) {
                 $temoignage->update($input);
+
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Témoignages',
+                    'action' => 'Mise à jour des informations du témoignage de ' . $input['nom']
+                ));
                 return redirect()->route('testimonial')->withSuccess('Témoignage modifié avec succès !');
-            }else{
+            } else {
                 return back()->withErrors(['message' => 'Témoignage introuvable !']);
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return back()->withErrors(['message' => $e->getMessage()]);
         }
     }
 
     public function delete($id)
     {
-        try{
+        try {
             $temoignage = Temoignage::find($id);
-            if($temoignage){
+            if ($temoignage) {
                 $temoignage->delete();
+
+
+                Log::create(array(
+                    'user_id' => Auth::user()->id,
+                    'item' => 'Témoignages',
+                    'action' => 'Suppression du témoignage de ' . $temoignage->nom
+                ));
                 return redirect()->route('testimonial')->withSuccess('Témoignage supprimé avec succès !');
-            }else{
+            } else {
                 return back()->withErrors(['message' => 'Témoignage introuvable !']);
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             return back()->withErrors(['message' => $e->getMessage()]);
         }
     }

@@ -11,7 +11,11 @@
         <meta content="Panneau d'administration d'OctetLab" name="description" />
         <meta content="Arnold FOSSO" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href=" {{asset('assets/images/favicon.ico')}} ">
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/favicon/apple-touch-icon.png')}} ">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/favicon/favicon-32x32.png')}} ">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/favicon/favicon-16x16.png')}}">
+        <link rel="manifest" href="{{asset('assets/favicon/site.webmanifest')}}">
         
         <!-- jvectormap -->
         <link href=" {{asset('assets/libs/jqvmap/jqvmap.min.css')}} " rel="stylesheet" />
@@ -77,17 +81,21 @@
                         <div class="dropdown d-inline-block user-dropdown">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src=" {{asset('assets/images/users/avatar-2.jpg')}} "
+                                <img class="rounded-circle header-profile-user" src=" @if (Auth::user()->avatar)
+                                    {{ Auth::user()->avatar }}
+                                @else
+                                    {{asset('assets/images/user.png')}}
+                                @endif  "
                                     alt="Header Avatar">
                                 <span class="d-none d-xl-inline-block ms-1"> {{Auth::user()->name}} </span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profil</a>
-                                <a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle me-1"></i> Mot de passe</a>
+                                <a class="dropdown-item" href=" {{route('profil')}} "><i class="ri-user-line align-middle me-1"></i> Profil</a>
+                                <a class="dropdown-item" href="{{route('modifier-mot-de-passe')}}"><i class="ri-wallet-2-line align-middle me-1"></i> Mot de passe</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Déconnexion</a>
+                                <a class="dropdown-item text-danger" href=" {{route('deconnexion')}} "><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Déconnexion</a>
                             </div>
                         </div>
 
@@ -173,6 +181,20 @@
                                 <a href=" {{route('avis')}} " class=" waves-effect">
                                     <i class="mdi mdi-comment"></i>
                                     <span>Avis et commentaires</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href=" {{route('logs')}} " class=" waves-effect">
+                                    <i class="mdi mdi-line"></i>
+                                    <span>Logs</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href=" {{route('users')}} " class=" waves-effect">
+                                    <i class="mdi mdi-human-male"></i>
+                                    <span>Utilisateurs</span>
                                 </a>
                             </li>
                         </ul>

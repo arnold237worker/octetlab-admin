@@ -36,7 +36,7 @@
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
                                 <p class="mb-1">Services</p>
-                                <h5 class="mb-3">435</h5>
+                                <h5 class="mb-3"> {{App\Models\Service::count()}} </h5>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
                                 <p class="mb-1">Réalisations</p>
-                                <h5 class="mb-3">435</h5>
+                                <h5 class="mb-3">{{App\Models\Realisation::count()}}</h5>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
                                 <p class="mb-1">Témoignages</p>
-                                <h5 class="mb-3">435</h5>
+                                <h5 class="mb-3">{{App\Models\Temoignage::count()}}</h5>
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="flex-grow-1 overflow-hidden">
                                 <p class="mb-1">Avis </p>
-                                <h5 class="mb-3">435</h5>
+                                <h5 class="mb-3">{{App\Models\Avis::count()}}</h5>
                             </div>
                         </div>
                     </div>

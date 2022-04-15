@@ -57,8 +57,12 @@
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label class="form-label">Note </label><br>
-                                        @for ($i=0; $i<$avis->note; $i++)
-                                            <i class="fa fa-star text-info"></i>
+                                        @for ($i=0; $i<5; $i++)
+                                            @if ($i<$avis->note)
+                                                <i class="fa fa-star text-info"></i>
+                                            @else
+                                                <i class="fa fa-star"></i>
+                                            @endif
                                         @endfor
                                     </div>
                                 </div>

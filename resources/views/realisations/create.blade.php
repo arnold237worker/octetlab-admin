@@ -33,6 +33,15 @@
                         <form method="post" action=" {{route('realisations.store')}} " enctype="multipart/form-data" >
                             @csrf
                             <div class="row g-2 g-md-4">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="etat">Statut <span class="text-info">*</span> </label>
+                                        <select class="form-select" required name="etat" id="autoSizingSelect">
+                                            <option value="published">Publier</option>
+                                            <option value="draft">Brouillon</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-lg-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="nomFr">Nom de la réalisation(Français) <span class="text-info">*</span> </label>

@@ -23,7 +23,8 @@ class Realisation extends Model
         'date_realisation',
         'lien', 
         'slug', 
-        'service_id'
+        'service_id',
+        'etat'
     ];
 
     public function images()
